@@ -25,6 +25,10 @@ class Note extends Component {
 		}
 	}
 
+	randomBetween(x, y, s) {
+			return x + Math.ceil(Math.random() * (y-x)) + s 
+	}
+
 	componentDidUpdate() {
 		var textArea
 		if(this.state.editing) {
@@ -34,8 +38,10 @@ class Note extends Component {
 		}
 	}
 
-	randomBetween(x, y, s) {
-			return x + Math.ceil(Math.random() * (y-x)) + s 
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.props.children !== nextProps.children || this.state !== nextState
+		)
 	}
 
 	edit() {
